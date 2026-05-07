@@ -34,13 +34,13 @@ const BillingAddressForm = ({ onFormDataChange }: BillingAddressFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "Afzal Hassan",
-      phone: "+91 9499004395",
+      title: "Vivek jhariya",
+      phone: "+91 6261964512",
       country: "India",
-      city: "Muzaffarpur",
-      state: "Bihar",
-      zip: "840000",
-      streetAddress: "12/43 Kidd Avenue",
+      city: "Indore",
+      state: "Madhya Pradesh",
+      zip: "452001",
+      streetAddress: "sillicon valley, indore",
     },
   });
 

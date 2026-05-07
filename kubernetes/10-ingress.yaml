@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: easyshop-ingress
-  namespace: easyshop
+  name: shopeasy-ingress
+  namespace: shopeasy
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     kubernetes.io/ingress.class: "nginx"
@@ -10,17 +10,17 @@ metadata:
 spec:
   tls:
   - hosts:
-    - easyshop.letsdeployit.com
-    secretName: easyshop-tls-secret  # Cert-Manager will manage this
+    - shopeasy.letsdeployit.com
+    secretName: shopeasy-tls-secret  # Cert-Manager will manage this
   rules:
-  - host: easyshop.letsdeployit.com
+  - host: shopeasy.letsdeployit.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: easyshop-service
+            name: shopeasy-service
             port:
               number: 80
 

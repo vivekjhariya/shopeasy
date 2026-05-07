@@ -11,6 +11,8 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import SearchBar from "../SearchBar";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 const ContainerVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -148,7 +150,7 @@ const SidebarOne = ({ isMobile = false }: SidebarOneProps) => {
                           <span className="flex gap-3 items-center">
                             {category.img && (
                               <Image
-                                src={category.img}
+                                src={`${BASE_URL}${category.img}`}
                                 width={30}
                                 height={30}
                                 alt={category.name}

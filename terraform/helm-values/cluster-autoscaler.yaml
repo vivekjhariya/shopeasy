@@ -1,0 +1,24 @@
+autoDiscovery:
+  clusterName: ${CLUSTER_NAME}
+  enabled: true
+
+awsRegion: ${AWS_REGION}
+
+rbac:
+  create: true
+  serviceAccount:
+    create: true
+    annotations:
+      eks.amazonaws.com/role-arn: ${ROLE_ARN}
+
+extraArgs:
+  balance-similar-node-groups: true
+  skip-nodes-with-system-pods: false
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 300Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi

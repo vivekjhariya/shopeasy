@@ -2,24 +2,21 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Product from '@/lib/models/product';
 
-export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } }
-) {
+type RouteContext = {
+  params: Promise<{ slug: string }>;
+};
+export async function GET(request: Request, context: RouteContext) {
   try {
+    const params = await context.params;
     await dbConnect();
     
     const { slug } = params;
     
-    // First try to find by originalId (which is used as slug)
+    // Try to find by originalId first, then by _id
     let product = await Product.findOne({ originalId: slug });
     
-    // If not found by originalId, try by _id
     if (!product) {
-      // Only try to find by _id if the slug looks like a MongoDB ObjectId
-      if (/^[0-9a-fA-F]{24}$/.test(slug)) {
-        product = await Product.findById(slug);
-      }
+      product = await Product.findOne({ _id: slug });
     }
     
     if (!product) {

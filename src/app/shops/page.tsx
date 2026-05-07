@@ -3,50 +3,52 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 const shops = [
   {
     title: "Books Shop",
-    image: "/icons/books.png",
+    image: `${BASE_URL}/icons/books.png`,
     link: "/shops/books",
   },
   {
     title: "Bakery Shop",
-    image: "/icons/bakery.png",
+    image: `${BASE_URL}/icons/bakery.png`,
     link: "/shops/bakery",
   },
   {
     title: "Bags Shop",
-    image: "/icons/bag.png",
+    image: `${BASE_URL}/icons/bag.png`,
     link: "/shops/bags",
   },
   {
     title: "Clothing Shop",
-    image: "/icons/bakery.png",
+    image: `${BASE_URL}/icons/bakery.png`,
     link: "/shops/clothing",
   },
   {
     title: "Furnitures Shop",
-    image: "/icons/furniture.png",
+    image: `${BASE_URL}/icons/furniture.png`,
     link: "/shops/furniture",
   },
   {
     title: "Gadgets Shop",
-    image: "/icons/gadgets.png",
+    image: `${BASE_URL}/icons/gadgets.png`,
     link: "/shops/gadgets",
   },
   {
     title: "Grocery Shop",
-    image: "/icons/grocery.png",
+    image: `${BASE_URL}/icons/grocery.png`,
     link: "/shops/grocery",
   },
   {
     title: "Makeup Shop",
-    image: "/icons/makeup.png",
+    image: `${BASE_URL}/icons/makeup.png`,
     link: "/shops/makeup",
   },
   {
     title: "Medicine Shop",
-    image: "/icons/medicine.png",
+    image: `${BASE_URL}/icons/medicine.png`,
     link: "/shops/medicine",
   },
 ];
@@ -54,7 +56,7 @@ const shops = [
 export const metadata: Metadata = {
   title: "All Shops",
   description:
-    "EasyShop is the user-friendly Next.js eCommerce template perfect for launching your online store. With its clean design and customizable options, EasyShop makes selling online a breeze. Start building your dream store today and boost your online presence effortlessly!",
+    "Shopees is the user-friendly Next.js eCommerce template perfect for launching your online store. With its clean design and customizable options, Shopees makes selling online a breeze. Start building your dream store today and boost your online presence effortlessly!",
 };
 
 const ShopsPage = () => {

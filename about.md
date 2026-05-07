@@ -1,4 +1,4 @@
-# 🛍️ EasyShop - Modern E-commerce Platform
+# 🛍️ ShopEasy - Modern E-commerce Platform
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.1.0-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0.0-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -6,7 +6,7 @@
 [![Redux](https://img.shields.io/badge/Redux-2.2.1-purple?style=flat-square&logo=redux)](https://redux.js.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-EasyShop is a modern, full-stack e-commerce platform built with Next.js 14, TypeScript, and MongoDB. It features a beautiful UI with Tailwind CSS, secure authentication, real-time cart updates, and a seamless shopping experience.
+ShopEasy is a modern, full-stack e-commerce platform built with Next.js 14, TypeScript, and MongoDB. It features a beautiful UI with Tailwind CSS, secure authentication, real-time cart updates, and a seamless shopping experience.
 
 ## ✨ Features
 
@@ -22,7 +22,7 @@ EasyShop is a modern, full-stack e-commerce platform built with Next.js 14, Type
 
 ## 🏗️ Architecture
 
-EasyShop follows a three-tier architecture pattern:
+ShopEasy follows a three-tier architecture pattern:
 
 ### 1. Presentation Tier (Frontend)
 - Next.js React Components
@@ -106,7 +106,7 @@ flowchart TD
 
 ### Docker Setup Guide
 
-This guide will help you run EasyShop using Docker containers. No local Node.js or MongoDB installation required!
+This guide will help you run ShopEasy using Docker containers. No local Node.js or MongoDB installation required!
 
 ### Prerequisites
 
@@ -118,7 +118,7 @@ This guide will help you run EasyShop using Docker containers. No local Node.js 
 1. Create a file named `.env.local` in the root directory with the following content:
 ```env
 # Database Configuration
-MONGODB_URI=mongodb://easyshop-mongodb:27017/easyshop
+MONGODB_URI=mongodb://shopeasy-mongodb:27017/shopeasy
 
 # NextAuth Configuration
 NEXTAUTH_URL=http://localhost:3000  # Replace with your EC2 instance's public IP or put localhost:3000
@@ -166,14 +166,14 @@ If you prefer more control, you can run each service manually:
 
 1. Create a Docker network:
 ```bash
-docker network create easyshop-network
+docker network create shopeasy-network
 ```
 
 2. Start MongoDB:
 ```bash
 docker run -d \
-  --name easyshop-mongodb \
-  --network easyshop-network \
+  --name shopeasy-mongodb \
+  --network shopeasy-network \
   -p 27017:27017 \
   -v mongodb_data:/data/db \
   mongo:latest
@@ -181,36 +181,36 @@ docker run -d \
 
 3. Build the main application:
 ```bash
-docker build -t easyshop .
+docker build -t shopeasy .
 ```
 
 4. Build and run data migration:
 ```bash
 # Build migration image
-docker build -t easyshop-migration -f scripts/Dockerfile.migration .
+docker build -t shopeasy-migration -f scripts/Dockerfile.migration .
 
 # Run migration
 docker run --rm \
-  --network easyshop-network \
+  --network shopeasy-network \
   --env-file .env.local \
-  easyshop-migration
+  shopeasy-migration
 ```
 
-5. Start the EasyShop application:
+5. Start the ShopEasy application:
 ```bash
 docker run -d \
-  --name easyshop \
-  --network easyshop-network \
+  --name shopeasy \
+  --network shopeasy-network \
   -p 3000:3000 \
   --env-file .env.local \
-  easyshop:latest
+  shopeasy:latest
 ```
 
 ### Accessing the Application
 
 1. Open your web browser
 2. Visit [http://localhost:3000](http://localhost:3000)
-3. You should see the EasyShop homepage!
+3. You should see the ShopEasy homepage!
 
 ### Useful Docker Commands
 
@@ -219,29 +219,29 @@ docker run -d \
 docker ps
 
 # View container logs
-docker logs easyshop
-docker logs easyshop-mongodb
+docker logs shopeasy
+docker logs shopeasy-mongodb
 
 # Stop containers
-docker stop easyshop easyshop-mongodb
+docker stop shopeasy shopeasy-mongodb
 
 # Remove containers
-docker rm easyshop easyshop-mongodb
+docker rm shopeasy shopeasy-mongodb
 
 # Remove network
-docker network rm easyshop-network
+docker network rm shopeasy-network
 ```
 
 ### Troubleshooting
 
 1. If you can't connect to MongoDB:
    - Make sure the MongoDB container is running: `docker ps`
-   - Check MongoDB logs: `docker logs easyshop-mongodb`
-   - Verify network connection: `docker network inspect easyshop-network`
+   - Check MongoDB logs: `docker logs shopeasy-mongodb`
+   - Verify network connection: `docker network inspect shopeasy-network`
 
 2. If the application isn't accessible:
    - Check if the container is running: `docker ps`
-   - View application logs: `docker logs easyshop`
+   - View application logs: `docker logs shopeasy`
    - Make sure port 3000 isn't being used by another application
 
 3. If migration fails:
@@ -284,7 +284,7 @@ Error: MongoDB connection failed
 ## 📦 Project Structure
 
 ```
-easyshop/
+shopeasy/
 ├── src/
 │   ├── app/              # Next.js App Router pages
 │   ├── components/       # Reusable React components
@@ -330,7 +330,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For questions or feedback, please open an issue or contact the maintainers:
 
 - Maintainer - [@Md. Afzal hassan Ehsani](https://github.com/iemafzalhassan)
-- Project Link: [https://github.com/iemafzalhassan/easyshop](https://github.com/iemafzalhassan/easyshop)
+- Project Link: [https://github.com/iemafzalhassan/shopeasy](https://github.com/iemafzalhassan/shopeasy)
 
 ---
 

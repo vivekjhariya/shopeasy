@@ -10,6 +10,8 @@ import { HiMiniXMark } from "react-icons/hi2";
 import { RiMenuFoldLine } from "react-icons/ri";
 import { Button } from "../ui/button";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 const ContainerVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -146,7 +148,7 @@ const SidebarTwo = ({ isMobile = false }: SidebarTwoProps) => {
                           onClick={() => setOpen(false)}
                         >
                           <Image
-                            src={c?.img || ""}
+                            src={`${BASE_URL}${c?.img}` || ""}
                             alt={c.name}
                             width={50}
                             height={50}
@@ -184,7 +186,7 @@ const SidebarTwo = ({ isMobile = false }: SidebarTwoProps) => {
                     onClick={() => setOpen(false)}
                   >
                     <Image
-                      src={item?.img || ""}
+                      src={`${BASE_URL}${item?.img}` || ""}
                       alt={item.name}
                       width={50}
                       height={50}

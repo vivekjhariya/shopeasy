@@ -5,18 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 const shops = [
-  { title: "gadgets", icon: "/icons/gadgets.png" },
-  { title: "grocery", icon: "/icons/grocery.png" },
-  { title: "bakery", icon: "/icons/bakery.png" },
-  { title: "clothing", icon: "/icons/clothing.png" },
-  { title: "makeup", icon: "/icons/makeup.png" },
-  { title: "bags", icon: "/icons/bag.png" },
-  { title: "furniture", icon: "/icons/furniture.png" },
-  { title: "books", icon: "/icons/books.png" },
-  { title: "medicine", icon: "/icons/medicine.png" },
-  { title: "snacks", icon: "/icons/grocery.png" }, // Using grocery icon for snacks
-  { title: "beauty", icon: "/icons/makeup.png" }  // Using makeup icon for beauty
+  { title: "gadgets", icon: `${BASE_URL}/icons/gadgets.png` },
+  { title: "grocery", icon: `${BASE_URL}/icons/grocery.png` },
+  { title: "bakery", icon: `${BASE_URL}/icons/bakery.png` },
+  { title: "clothing", icon: `${BASE_URL}/icons/clothing.png` },
+  { title: "makeup", icon: `${BASE_URL}/icons/makeup.png` },
+  { title: "bags", icon: `${BASE_URL}/icons/bag.png` },
+  { title: "furniture", icon: `${BASE_URL}/icons/furniture.png` },
+  { title: "books", icon: `${BASE_URL}/icons/books.png` },
+  { title: "medicine", icon: `${BASE_URL}/icons/medicine.png` },
+  { title: "snacks", icon: `${BASE_URL}/icons/grocery.png` },
+  { title: "beauty", icon: `${BASE_URL}/icons/makeup.png` }
 ];
 
 const FeaturedNav = () => {

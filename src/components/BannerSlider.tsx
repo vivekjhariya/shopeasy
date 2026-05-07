@@ -16,6 +16,8 @@ type BannerSliderProps = {
   className?: string;
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 const BannerSlider = ({ bannerImages, className }: BannerSliderProps) => {
   return (
     <div className={cn("container mt-10", className)}>
@@ -36,7 +38,7 @@ const BannerSlider = ({ bannerImages, className }: BannerSliderProps) => {
                 width={600}
                 height={400}
                 alt={"banner"}
-                src={item.img}
+                src={item.img.startsWith('http') ? item.img : `${BASE_URL}${item.img}`}
                 className="w-full h-auto"
               />
             </CarouselItem>

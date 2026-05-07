@@ -5,6 +5,8 @@ import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://dm168xfkl91xe.cloudfront.net';
+
 type ProductImageSliderProps = {
   images: string[];
   options?: EmblaOptionsType;
@@ -33,7 +35,7 @@ const Thumb: React.FC<ThumbProps> = (props) => {
         title="img"
       >
         <Image
-          src={img}
+          src={img.startsWith('http') ? img : `${BASE_URL}${img}`}
           width={100}
           height={100}
           alt="product"
@@ -82,7 +84,7 @@ const ProductImageSlider: React.FC<ProductImageSliderProps> = (props) => {
             <div className="embla__slide border" key={index}>
               <div className="embla__slide__number">
                 <Image
-                  src={img}
+                  src={img.startsWith('http') ? img : `${BASE_URL}${img}`}
                   width={500}
                   height={500}
                   alt="product"
@@ -113,7 +115,7 @@ const ProductImageSlider: React.FC<ProductImageSliderProps> = (props) => {
   ) : (
     <div>
       <Image
-        src={images[0]}
+        src={images[0].startsWith('http') ? images[0] : `${BASE_URL}${images[0]}`}
         width={500}
         height={500}
         alt="product"

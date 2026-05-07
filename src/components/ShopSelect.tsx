@@ -28,18 +28,25 @@ const ShopSelect = () => {
   });
 
   const handleSelectShop = useCallback((shop?: string) => {
-    if (shop) {
+    if (shop && shop !== "Select Shop") {
       const foundShop = shops.find((s) => s.title === shop);
-      setSelectedShop(foundShop || { title: "Select Shop", icon: "" });
-      router.push(`/shops/${shop}`);
+      if (foundShop) {
+        setSelectedShop(foundShop);
+        router.push(`/shops/${shop}`);
+      }
     }
   }, [router]);
 
   useEffect(() => {
-    if (selectedShop) {
-      handleSelectShop(selectedShop.title);
+    // Only run on mount or when shop param changes
+    const currentShop = window.location.pathname.split('/shops/')[1];
+    if (currentShop) {
+      const foundShop = shops.find((s) => s.title === currentShop);
+      if (foundShop) {
+        setSelectedShop(foundShop);
+      }
     }
-  }, [selectedShop, handleSelectShop]);
+  }, []);
 
   return (
     <DropdownMenu modal={false}>

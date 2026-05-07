@@ -6,16 +6,16 @@ import { Metadata, ResolvingMetadata } from "next";
 import { Suspense } from "react";
 
 type SingleProductPageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateMetadata(
-  { params }: SingleProductPageProps,
+  props: SingleProductPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  // read route params
+  const params = await props.params;
   const slug = params.slug;
 
   // fetch data
@@ -28,9 +28,10 @@ export async function generateMetadata(
   };
 }
 
-const SingleProductPage = async ({
-  params: { slug },
-}: SingleProductPageProps) => {
+const SingleProductPage = async (props: SingleProductPageProps) => {
+  const params = await props.params;
+  const slug = params.slug;
+  
   const res = await fetchData.get(`/singleProduct/${slug}`);
   const product: SingleProductType | null = res.data || null;
 

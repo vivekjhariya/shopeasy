@@ -34,13 +34,13 @@ const ShippingAddressForm = ({ onFormDataChange }: ShippingAddressFormProps) => 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "Afzal Hassan",
-      phone: "+91 9400990439",
-      streetAddress: "House 1, Street 1",
-      city: "Muzaffarpur",
+      title: "Vivek jhariya",
+      phone: "+91 6261964512",
+      streetAddress: "m/23 sillicon valley, indore",
+      city: "Indore",
       state: "Bihar",
       country: "India",
-      zip: "840000",
+      zip: "452001",
     },
   });
 

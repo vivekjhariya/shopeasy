@@ -1,13 +1,13 @@
-version: '3.8'
-
 services:
   mongodb:
-    image: mongo:latest
-    container_name: easyshop-mongodb
+    image: mongo:7.0
+    container_name: shopeasy-mongodb
     ports:
       - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=shopeasy
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
@@ -15,40 +15,53 @@ services:
       retries: 5
       start_period: 30s
     networks:
-      - easyshop-network
+      - shopeasy-network
+    restart: unless-stopped
 
   migration:
     build:
       context: .
       dockerfile: scripts/Dockerfile.migration
-    container_name: easyshop-migration
-    env_file:
-      - .env.local
+    container_name: shopeasy-migration
+    environment:
+      - MONGODB_URI=mongodb://shopeasy-mongodb:27017/shopeasy
+      - NODE_ENV=production
     depends_on:
       mongodb:
         condition: service_healthy
     networks:
-      - easyshop-network
+      - shopeasy-network
 
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: easyshop
+    container_name: shopeasy
     ports:
       - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://shopeasy-mongodb:27017/shopeasy
+      - NODE_ENV=production
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/api
     env_file:
-      - .env.local
+      - .env   # JWT_SECRET, NEXTAUTH_SECRET, IMAGE_BASE_URL etc.
     depends_on:
       migration:
         condition: service_completed_successfully
     networks:
-      - easyshop-network
+      - shopeasy-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/api/auth/check || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
 networks:
-  easyshop-network:
-    name: easyshop-network
+  shopeasy-network:
+    name: shopeasy-network
 
 volumes:
   mongodb_data:

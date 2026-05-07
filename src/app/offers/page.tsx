@@ -1,31 +1,33 @@
 import { Metadata } from "next";
 import Image from "next/image";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 const offers = [
   {
-    imgUrl: "/offersImages/offer1.png",
+    imgUrl: `${BASE_URL}/offersImages/offer1.png`,
   },
   {
-    imgUrl: "/offersImages/offer2.png",
+    imgUrl: `${BASE_URL}/offersImages/offer2.png`,
   },
   {
-    imgUrl: "/offersImages/offer3.png",
+    imgUrl: `${BASE_URL}/offersImages/offer3.png`,
   },
   {
-    imgUrl: "/offersImages/offer4.png",
+    imgUrl: `${BASE_URL}/offersImages/offer4.png`,
   },
   {
-    imgUrl: "/offersImages/offer5.png",
+    imgUrl: `${BASE_URL}/offersImages/offer5.png`,
   },
   {
-    imgUrl: "/offersImages/offer6.png",
+    imgUrl: `${BASE_URL}/offersImages/offer6.png`,
   },
 ];
 
 export const metadata: Metadata = {
   title: "Offers",
   description:
-    "EasyShop is the user-friendly Next.js eCommerce template perfect for launching your online store. With its clean design and customizable options, EasyShop makes selling online a breeze. Start building your dream store today and boost your online presence effortlessly!",
+    "Shopees is the user-friendly Next.js eCommerce template perfect for launching your online store. With its clean design and customizable options, Shopees makes selling online a breeze. Start building your dream store today and boost your online presence effortlessly!",
 };
 
 const OffersPage = () => {

@@ -1,0 +1,4 @@
+* @devops-team
+/terraform/enviroments/prod/ @devops-lead @security-team
+/terraform/modules/security/ @security-team
+/terraform/docs/SECURITY.md @security-team

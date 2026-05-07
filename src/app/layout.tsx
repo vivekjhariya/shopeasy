@@ -17,7 +17,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "EasyShop - Your One-Stop Shopping Destination",
+  title: "Shopees - Your One-Stop Shopping Destination",
   description: "Shop the latest trends in fashion, electronics, and more.",
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={roboto.className}>
         <StoreProvider>
           <ThemeProvider

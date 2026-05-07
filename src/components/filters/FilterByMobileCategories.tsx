@@ -9,6 +9,8 @@ import { useState } from "react";
 import { LuChevronDown } from "react-icons/lu";
 import { useDispatch } from "react-redux";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 type CategoriesType = {
   name: string;
   search_link: string;
@@ -51,7 +53,7 @@ const FilterByMobileCategories = () => {
             <span className="flex gap-3 items-center">
               {category.img && (
                 <Image
-                  src={category.img}
+                  src={`${BASE_URL}${category.img}`}
                   width={30}
                   height={30}
                   alt={category.name}

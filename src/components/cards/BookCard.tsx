@@ -2,6 +2,8 @@ import Image from "next/image";
 import React from "react";
 import AddToCartBtnWrapper from "../AddToCartWrapper";
 import Link from "next/link";
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://dm168xfkl91xe.cloudfront.net';
+
 
 const BookCard = ({
   _id,
@@ -21,7 +23,7 @@ const BookCard = ({
     <div className="book-card bg-secondary p-4 rounded-lg hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
       <Link href={`/products/${_id}`}>
         <div className="rounded-sm overflow-hidden">
-          <Image src={image[0]} width={600} height={880} alt={title} />
+          <Image src={image[0].startsWith('http') ? image[0] : `${BASE_URL}${image[0]}`} width={600} height={880} alt={title} />
         </div>
         <div className="mt-3">
           <h3 className="line-clamp-1">{title}</h3>

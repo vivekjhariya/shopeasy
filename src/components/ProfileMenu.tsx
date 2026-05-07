@@ -14,6 +14,8 @@ import { CgProfile } from "react-icons/cg";
 import { FaHeart } from "react-icons/fa";
 import { IoBagCheckOutline, IoLogOut } from "react-icons/io5";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 const profileLinks = [
   {
     title: "Profile",
@@ -46,7 +48,7 @@ export function ProfileMenu({ setIsOpen }: ProfileMenuProps) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Image
-          src={"/icons/avatar.png"}
+          src={`${BASE_URL}/icons/avatar.png`}
           width={35}
           height={35}
           alt="profile"

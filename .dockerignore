@@ -20,11 +20,27 @@ yarn-error.log
 
 # Docker
 Dockerfile
+Dockerfile.dev
 docker-compose.yml
 .dockerignore
 
-# Development files
+# Terraform
+terraform/
+
+# Scripts (not needed in image)
+scripts/
+
+# Dev/docs files
 README.md
 *.md
 .vscode
 .idea
+fix-*.py
+fix-*.sh
+quick-start.sh
+setup-local.sh
+JENKINS.md
+about.md
+
+# Kubernetes manifests
+kubernetes/

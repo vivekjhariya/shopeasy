@@ -1,41 +1,32 @@
-# Stage 1: Development/Build Stage
-FROM node:18-alpine AS builder
-
-# Set working directory
+# Stage 1: deps — only production dependencies
+FROM node:20-alpine AS deps
 WORKDIR /app
-
-# Install necessary build dependencies
-RUN apk add --no-cache python3 make g++
-
-# Copy package files
 COPY package*.json ./
+RUN npm ci --omit=dev
 
-# Install dependencies
+# Stage 2: builder — full build
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
 RUN npm ci
-
-# Copy all project files
 COPY . .
-
-# Build the Next.js application
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
-# Stage 2: Production Stage
-FROM node:18-alpine AS runner
-
-# Set working directory
+# Stage 3: runner — distroless (no shell, no package manager, minimal attack surface)
+FROM gcr.io/distroless/nodejs20-debian12 AS runner
 WORKDIR /app
 
-# Copy necessary files from builder stage
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+# Copy standalone output (includes node_modules needed at runtime)
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
 
-# Set environment variables
-ENV NODE_ENV=production
-ENV PORT=3000
-
-# Expose the port the app runs on
 EXPOSE 3000
 
-# Command to run the application
-CMD ["node", "server.js"]
+# distroless nodejs image ka entrypoint node hi hota hai
+CMD ["server.js"]

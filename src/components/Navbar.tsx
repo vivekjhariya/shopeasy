@@ -21,39 +21,19 @@ import SignupForm from "./forms/SignupForm";
 import { Button } from "./ui/button";
 
 const links = [
-  {
-    title: "Shops",
-    url: "/shops",
-  },
-  {
-    title: "Contact",
-    url: "/contact",
-  },
-
-  {
-    title: "Offers",
-    url: "/offers",
-  },
+  { title: "Shops", url: "/shops" },
+  { title: "Deals", url: "/deals" },
+  { title: "About", url: "/about" },
+  { title: "Contact", url: "/contact" },
   {
     title: "Pages",
     url: "",
     subLinks: [
-      {
-        title: "Profile",
-        url: "/profile",
-      },
-      {
-        title: "Contact Us",
-        url: "/contact",
-      },
-      {
-        title: "Checkout",
-        url: "/checkout",
-      },
-      {
-        title: "Orders",
-        url: "/profile/orders",
-      },
+      { title: "Profile", url: "/profile" },
+      { title: "Contact Us", url: "/contact" },
+      { title: "About Us", url: "/about" },
+      { title: "Checkout", url: "/checkout" },
+      { title: "Orders", url: "/profile/orders" },
     ],
   },
 ];
@@ -166,7 +146,7 @@ const Navbar = () => {
               asChild
             >
               <a
-                href="https://github.com/iemafzalhassan/EasyShop"
+                href="https://github.com/vivekjhariya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"

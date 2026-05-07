@@ -3,6 +3,8 @@ import { ProductCardVariants } from "@/components/cards/ProductCard";
 
 // here you can change heroImages, filterOptions and productCard variants for specific shop
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://dm168xfkl91xe.cloudfront.net';
+
 interface HeroImage {
   bgImg: string;
 }
@@ -27,13 +29,13 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/clothing1.png",
+          bgImg: `${BASE_URL}/heroImages/clothing1.png`,
         },
         {
-          bgImg: "/heroImages/clothing2.png",
+          bgImg: `${BASE_URL}/heroImages/clothing2.png`,
         },
         {
-          bgImg: "/heroImages/clothing3.png",
+          bgImg: `${BASE_URL}/heroImages/clothing3.png`,
         },
       ],
     },
@@ -46,10 +48,10 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/bakery1.png",
+          bgImg: `${BASE_URL}/heroImages/bakery1.png`,
         },
         {
-          bgImg: "/heroImages/bakery2.png",
+          bgImg: `${BASE_URL}/heroImages/bakery2.png`,
         },
       ],
     },
@@ -60,7 +62,7 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/book1.png",
+          bgImg: `${BASE_URL}/heroImages/book1.png`,
         },
       ],
     },
@@ -72,13 +74,13 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/clothing1.png",
+          bgImg: `${BASE_URL}/heroImages/clothing1.png`,
         },
         {
-          bgImg: "/heroImages/clothing2.png",
+          bgImg: `${BASE_URL}/heroImages/clothing2.png`,
         },
         {
-          bgImg: "/heroImages/clothing3.png",
+          bgImg: `${BASE_URL}/heroImages/clothing3.png`,
         },
       ],
     },
@@ -93,7 +95,7 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/furniture1.png",
+          bgImg: `${BASE_URL}/heroImages/furniture1.png`,
         },
       ],
     },
@@ -104,13 +106,13 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/gadget1.png",
+          bgImg: `${BASE_URL}/heroImages/gadget1.png`,
         },
         {
-          bgImg: "/heroImages/gadget2.png",
+          bgImg: `${BASE_URL}/heroImages/gadget2.png`,
         },
         {
-          bgImg: "/heroImages/gadget3.png",
+          bgImg: `${BASE_URL}/heroImages/gadget3.png`,
         },
       ],
     },
@@ -128,7 +130,7 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/grocery.png",
+          bgImg: `${BASE_URL}/heroImages/grocery.png`,
         },
       ],
     },
@@ -140,10 +142,10 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/makeup1.png",
+          bgImg: `${BASE_URL}/heroImages/makeup1.png`,
         },
         {
-          bgImg: "/heroImages/makeup2.png",
+          bgImg: `${BASE_URL}/heroImages/makeup2.png`,
         },
       ],
     },
@@ -155,7 +157,7 @@ const layoutSettings: Data = {
     hero: {
       images: [
         {
-          bgImg: "/heroImages/medicine.png",
+          bgImg: `${BASE_URL}/heroImages/medicine.png`,
         },
       ],
     },

@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import AddToCartBtnWrapper from "../AddToCartWrapper";
 import { discountPercent } from "@/lib/utils";
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://dm168xfkl91xe.cloudfront.net';
+
 
 const CardThree = ({
   _id,
@@ -23,7 +25,7 @@ const CardThree = ({
       <Link href={`/products/${_id}`}>
         <div className="img">
           <Image
-            src={image[0]}
+            src={image[0].startsWith('http') ? image[0] : `${BASE_URL}${image[0]}`}
             width={500}
             height={500}
             alt={title}

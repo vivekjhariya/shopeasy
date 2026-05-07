@@ -55,6 +55,8 @@ const item: Variants = {
   },
 };
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 const formSchema = z.object({
   avatar: z.string(),
   name: z
@@ -77,7 +79,7 @@ const ProfileForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      avatar: "/icons/avatar.png",
+      avatar: `${BASE_URL}/icons/avatar.png`,
       name: currentUser?.name || "",
       email: currentUser?.email || "",
       bio: "",
@@ -120,7 +122,7 @@ const ProfileForm = () => {
                   <IoMdCloudUpload />
                 </div>
                 <Image
-                  src={uploadImgUrl || "/icons/avatar.png"}
+                  src={uploadImgUrl || `${BASE_URL}/icons/avatar.png`}
                   alt="avatar"
                   width={100}
                   height={100}

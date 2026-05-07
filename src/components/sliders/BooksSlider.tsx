@@ -10,6 +10,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://dm168xfkl91xe.cloudfront.net';
+
 type BookSliderProps = {
   books: BooksProduct[] | [];
 };
@@ -36,7 +38,7 @@ const BooksSlider = ({ books }: BookSliderProps) => {
                 width={400}
                 height={600}
                 alt={book.title}
-                src={book.image[0]}
+                src={book.image[0].startsWith('http') ? book.image[0] : `${BASE_URL}${book.image[0]}`}
                 className="rounded-lg"
               />
             </Link>

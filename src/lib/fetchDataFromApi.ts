@@ -17,14 +17,16 @@ export const axiosInstance = axios.create({
 // Add request interceptor to include token from cookie
 axiosInstance.interceptors.request.use(
   async (config) => {
-    // Get token from cookie
-    const cookies = document.cookie.split(';');
-    const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
-    const token = tokenCookie ? tokenCookie.split('=')[1] : null;
+    // Get token from cookie (only in browser)
+    if (typeof window !== 'undefined') {
+      const cookies = document.cookie.split(';');
+      const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
+      const token = tokenCookie ? tokenCookie.split('=')[1] : null;
 
-    // If token exists, add it to headers
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+      // If token exists, add it to headers
+      if (token) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+      }
     }
 
     return config;
@@ -37,10 +39,13 @@ axiosInstance.interceptors.request.use(
 const fetchData = {
   get: async (url: string, params = {}) => {
     try {
-      // Get token from cookie
-      const cookies = document.cookie.split(';');
-      const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
-      const token = tokenCookie ? decodeURIComponent(tokenCookie.split('=')[1].trim()) : null;
+      // Get token from cookie (only in browser)
+      let token = null;
+      if (typeof window !== 'undefined') {
+        const cookies = document.cookie.split(';');
+        const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
+        token = tokenCookie ? decodeURIComponent(tokenCookie.split('=')[1].trim()) : null;
+      }
 
       const config = {
         params,
@@ -57,10 +62,13 @@ const fetchData = {
   },
   post: async (url: string, data = {}) => {
     try {
-      // Get token from cookie
-      const cookies = document.cookie.split(';');
-      const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
-      const token = tokenCookie ? decodeURIComponent(tokenCookie.split('=')[1].trim()) : null;
+      // Get token from cookie (only in browser)
+      let token = null;
+      if (typeof window !== 'undefined') {
+        const cookies = document.cookie.split(';');
+        const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
+        token = tokenCookie ? decodeURIComponent(tokenCookie.split('=')[1].trim()) : null;
+      }
 
       const config = {
         headers: token ? { 'Authorization': `Bearer ${token}` } : {}

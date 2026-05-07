@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://dm168xfkl91xe.cloudfront.net';
+
 import AddToCartBtnWrapper from "../AddToCartWrapper";
 import { discountPercent } from "@/lib/utils";
 import { useState } from "react";
@@ -35,7 +37,7 @@ const CardTwo = ({
           </div>
         ) : (
           <Image
-            src={image[0]}
+            src={image[0].startsWith('http') ? image[0] : `${BASE_URL}${image[0]}`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt={title}

@@ -1,20 +1,19 @@
 locals {
-
-  region          = "eu-west-1"
-  name            = "tws-eks-cluster"
-  vpc_cidr        = "10.0.0.0/16"
-  azs             = ["eu-west-1a", "eu-west-1b"]
+  region          = var.aws_region
+  name            = "${var.project_name}-eks-cluster"
+  vpc_cidr        = var.vpc_cidr
+  azs             = ["${var.aws_region}a", "${var.aws_region}b"]
   public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
   private_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
   intra_subnets   = ["10.0.5.0/24", "10.0.6.0/24"]
-  tags = {
-    example = local.name
-  }
 
+  tags = {
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "terraform"
+  }
 }
 
 provider "aws" {
-
   region = local.region
-
 }

@@ -3,15 +3,17 @@ import dbConnect from '@/lib/db';
 import Cart from '@/lib/models/cart';
 import { requireAuth } from '@/lib/auth/utils';
 
+type RouteContext = {
+  params: Promise<{ productId: string }>;
+};
+
 // Update cart item quantity
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { productId: string } }
-) {
+export async function PUT(request: NextRequest, context: RouteContext) {
   try {
     const auth = await requireAuth(request);
     await dbConnect();
     
+    const params = await context.params;
     const body = await request.json();
     const { quantity } = body;
     
@@ -47,14 +49,12 @@ export async function PUT(
 }
 
 // Remove item from cart
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { productId: string } }
-) {
+export async function DELETE(request: NextRequest, context: RouteContext) {
   try {
     const auth = await requireAuth(request);
     await dbConnect();
     
+    const params = await context.params;
     const cart = await Cart.findOne({ user: auth.userId });
     if (!cart) {
       return NextResponse.json(

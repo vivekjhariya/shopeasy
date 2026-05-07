@@ -15,6 +15,8 @@ import categories from "@/data/categories.json";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+
 type BekaryCategoriesProps = {
   hidenameLink?: boolean;
   className?: string;
@@ -65,7 +67,7 @@ const BekaryCategories = ({
                     width={400}
                     height={400}
                     alt={item.name}
-                    src={item.img}
+                    src={`${BASE_URL}${item.img}`}
                     className={`${
                       pathname === item.search_link
                         ? "transition-all duration-300 border border-primary shadow-lg"

@@ -3,12 +3,13 @@ import dbConnect from '@/lib/db';
 import Product from '@/lib/models/product';
 import { requireAuth } from '@/lib/auth/utils';
 
+type RouteContext = {
+  params: Promise<{ productId: string }>;
+};
 // Get single product
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { productId: string } }
-) {
+export async function GET(request: NextRequest, context: RouteContext) {
   try {
+    const params = await context.params;
     await dbConnect();
     
     const product = await Product.findOne({ originalId: params.productId });
@@ -31,11 +32,9 @@ export async function GET(
 }
 
 // Create single product
-export async function POST(
-  request: NextRequest,
-  { params }: { params: { productId: string } }
-) {
+export async function POST(request: NextRequest, context: RouteContext) {
   try {
+    const params = await context.params;
     await dbConnect();
     
     const body = await request.json();
@@ -53,11 +52,9 @@ export async function POST(
 }
 
 // Update product (admin only)
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { productId: string } }
-) {
+export async function PUT(request: NextRequest, context: RouteContext) {
   try {
+    const params = await context.params;
     const auth = await requireAuth(request);
     if (auth.role !== 'admin') {
       return NextResponse.json(
@@ -92,11 +89,9 @@ export async function PUT(
 }
 
 // Delete product (admin only)
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { productId: string } }
-) {
+export async function DELETE(request: NextRequest, context: RouteContext) {
   try {
+    const params = await context.params;
     const auth = await requireAuth(request);
     if (auth.role !== 'admin') {
       return NextResponse.json(
