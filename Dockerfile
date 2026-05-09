@@ -22,11 +22,16 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
+# Copy non-root user from builder (distroless has no adduser)
+COPY --from=builder /etc/passwd /etc/passwd
+COPY --from=builder /etc/group /etc/group
+
 # Copy standalone output (includes node_modules needed at runtime)
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder --chown=nobody:nogroup /app/.next/standalone ./
+COPY --from=builder --chown=nobody:nogroup /app/.next/static ./.next/static
+
+USER nobody
 
 EXPOSE 3000
 
-# distroless nodejs image ka entrypoint node hi hota hai
 CMD ["server.js"]
