@@ -55,7 +55,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     general = {
-      name           = "${var.name_prefix}-general-ng"
+      name           = "${var.name_prefix}-ng"
       instance_types = var.node_instance_types
       capacity_type  = "SPOT"
       min_size       = var.node_min_size
@@ -69,7 +69,7 @@ module "eks" {
     }
 
     spot = var.enable_spot_instances ? {
-      name           = "${var.name_prefix}-spot-ng"
+      name           = "${var.name_prefix}-ng"
       instance_types = ["t3.medium", "t3.small", "t3.micro"]
       capacity_type  = "SPOT"
       min_size       = 1
