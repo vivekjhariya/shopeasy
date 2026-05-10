@@ -22,7 +22,7 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    "${local.name}-ng" = {
+    "ng" = {
       min_size     = var.eks_node_min_size
       max_size     = var.eks_node_max_size
       desired_size = var.eks_node_desired_size
