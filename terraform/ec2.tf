@@ -78,7 +78,7 @@ resource "aws_instance" "jenkins" {
   subnet_id              = module.vpc.public_subnets[0]  # same VPC as EKS
   monitoring             = true
 
-  user_data = file("${path.module}/install_tools.sh")
+  user_data = filebase64("${path.module}/scripts/install_tools.sh")
 
   root_block_device {
     volume_size           = 20
@@ -90,7 +90,7 @@ resource "aws_instance" "jenkins" {
   metadata_options {
     http_endpoint               = "enabled"
     http_tokens                 = "required"  # IMDSv2 enforced
-    http_put_response_hop_limit = 1
+    http_put_response_hop_limit = 2
   }
 
   tags = merge(local.tags, { Name = "${local.name}-jenkins" })
